@@ -41,6 +41,8 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
     'accessor-pairs': 'error',
     'react/prop-types': 0,
     'array-bracket-spacing': ['error', 'never'],

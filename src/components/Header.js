@@ -35,6 +35,11 @@ const Header = () => {
     setAnchorEl(null)
   }
 
+  const handleLogout = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -67,7 +72,7 @@ const Header = () => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </div>
       </Toolbar>
