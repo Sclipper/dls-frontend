@@ -3,8 +3,6 @@ import Options from 'components/Option'
 import { makeStyles } from '@material-ui/core'
 import { useAccessToken } from '../services/queries'
 
-import Header from '../components/Header'
-
 const useStyles = makeStyles((theme) => ({
   optionsContainer: {
     display: 'grid',
@@ -26,13 +24,10 @@ const Home = () => {
     history.push('/login')
   }
   return (
-    <div>
-      <Header />
-      <div className={classes.optionsContainer}>
-        <Options optionText="Generate Code" />
-        <Options optionText="Handle Classes" />
-        <Options optionText="Attendance information" />
-      </div>
+    <div className={classes.optionsContainer}>
+      <Options location="generate" optionText="Generate Code" />
+      <Options location="handle-classes" optionText="Handle Classes" />
+      <Options optionText="Attendance information" />
     </div>
   )
 }

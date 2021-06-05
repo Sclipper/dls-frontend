@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import Generate from 'pages/Generate'
+import HandleClasses from 'pages/HandleClasses'
+import Header from 'components/Header'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
@@ -9,8 +12,9 @@ import RootTheme from './RootTheme'
 
 const Dashboard = () => {
   return (
-    <Router>
-      <RootTheme>
+    <RootTheme>
+      <Router>
+        <Header />
         <Switch>
           <Route path="/login">
             <Login />
@@ -21,12 +25,21 @@ const Dashboard = () => {
           <Route path="/insights">
             <Insights />
           </Route>
+          <Route path="/generate">
+            <Generate />
+          </Route>
+          <Route path="/handle-classes">
+            <HandleClasses />
+          </Route>
+          {/* <Route path="/insights">
+            <Insights />
+          </Route> */}
           <Route path="/">
             <Home />
           </Route>
         </Switch>
-      </RootTheme>
-    </Router>
+      </Router>
+    </RootTheme>
   )
 }
 

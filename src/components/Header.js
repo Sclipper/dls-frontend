@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    cursor: 'pointer',
   },
 }))
 
@@ -26,6 +28,7 @@ const Header = () => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
+  const history = useHistory()
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget)
@@ -43,7 +46,11 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" className={classes.title}>
+        <Typography
+          onClick={() => history.push('/')}
+          variant="h6"
+          className={classes.title}
+        >
           DLS App
         </Typography>
         <div>
