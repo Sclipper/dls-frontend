@@ -11,7 +11,23 @@ import {
 import { useSubjects } from 'services/queries'
 import { addStudents } from 'services/api'
 
-const useStyles = makeStyles((theme) => ({}))
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+  },
+  component: {
+    margin: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  formControl: {
+    marginBottom: theme.spacing(2),
+  },
+  button: {
+    marginTop: theme.spacing(2),
+  },
+}))
 
 const HandleClasses = () => {
   const classes = useStyles()
