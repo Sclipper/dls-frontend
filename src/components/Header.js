@@ -40,6 +40,7 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.clear()
+    history.push('/')
     window.location.reload()
   }
 

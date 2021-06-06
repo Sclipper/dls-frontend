@@ -6,7 +6,7 @@ import Header from 'components/Header'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
-import Insights from './pages/Insights'
+import Info from './pages/Info'
 
 import RootTheme from './RootTheme'
 
@@ -22,18 +22,15 @@ const Dashboard = () => {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/insights">
-            <Insights />
-          </Route>
           <Route path="/generate">
             <Generate />
           </Route>
           <Route path="/handle-classes">
             <HandleClasses />
           </Route>
-          {/* <Route path="/insights">
-            <Insights />
-          </Route> */}
+          <Route path="/info">
+            <Info />
+          </Route>
           <Route path="/">
             <Home />
           </Route>

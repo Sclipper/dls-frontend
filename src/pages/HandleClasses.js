@@ -6,10 +6,12 @@ import {
   FormControl,
   MenuItem,
   Select,
+  TextField,
   Typography,
 } from '@material-ui/core'
 import { useSubjects } from 'services/queries'
-import { addStudents } from 'services/api'
+import { addStudents, addClass } from 'services/api'
+import { useQueryClient } from 'react-query'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -24,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     marginBottom: theme.spacing(2),
   },
+  formControlExtraSpacing: {
+    marginBottom: theme.spacing(3),
+  },
   button: {
     marginTop: theme.spacing(2),
   },
@@ -32,8 +37,12 @@ const useStyles = makeStyles((theme) => ({
 const HandleClasses = () => {
   const classes = useStyles()
   const useSubjectsQuery = useSubjects()
+  const queryClient = useQueryClient()
+
   const [chip, setChipValue] = React.useState([])
   const [selectedSubject, setSelectedSubject] = React.useState('')
+  const [name, setName] = React.useState('')
+  const [expiresAt, setExpiresAt] = React.useState('')
 
   const subjects = useSubjectsQuery.data
 
@@ -47,11 +56,19 @@ const HandleClasses = () => {
       alert('Students added')
     })
   }
+  const handleAddClass = () => {
+    addClass({ name, expiresAt }).then((res) => {
+      queryClient.invalidateQueries('getClasses')
+      setName('')
+      setExpiresAt('')
+      alert('Class added')
+    })
+  }
 
   return (
     <div className={classes.container}>
       <div className={classes.component}>
-        <Typography variant="h3">Add Students to a class</Typography>
+        <Typography variant="h3">Add Student to a class</Typography>
         <Typography variant="p">Select Class</Typography>
         <FormControl variant="outlined" className={classes.formControl}>
           <Select
@@ -69,7 +86,7 @@ const HandleClasses = () => {
             ))}
           </Select>
         </FormControl>
-        <Typography variant="p">Add students by ID</Typography>
+        <Typography variant="p">Add student by ID</Typography>
         <Chip value={chip} setChipValue={setChipValue} />
         <Button
           onClick={handleAddStudents}
@@ -81,8 +98,29 @@ const HandleClasses = () => {
         </Button>
       </div>
       <div className={classes.component}>
-        <Typography variant="h2">Add classes</Typography>
-        {/* <Chip value={chip} setChipValue={setChipValue} /> */}
+        <Typography variant="h2">Add classe</Typography>
+        <TextField
+          className={classes.formControlExtraSpacing}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          label="Name"
+          variant="outlined"
+        />
+        <TextField
+          // className={classes.formControl}
+          value={expiresAt}
+          onChange={(e) => setExpiresAt(e.target.value)}
+          label="Exp. Date (YYYY/MM/DD)"
+          variant="outlined"
+        />
+        <Button
+          onClick={handleAddClass}
+          className={classes.button}
+          color="primary"
+          variant="contained"
+        >
+          Submit
+        </Button>
       </div>
     </div>
   )

@@ -27,7 +27,7 @@ const Home = () => {
     <div className={classes.optionsContainer}>
       <Options location="generate" optionText="Generate Code" />
       <Options location="handle-classes" optionText="Handle Classes" />
-      <Options optionText="Attendance information" />
+      <Options location="info" optionText="Attendance information" />
     </div>
   )
 }
