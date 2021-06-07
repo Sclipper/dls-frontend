@@ -38,14 +38,11 @@ const HandleClasses = () => {
   const classes = useStyles()
   const useSubjectsQuery = useSubjects()
   const queryClient = useQueryClient()
-
   const [chip, setChipValue] = React.useState([])
   const [selectedSubject, setSelectedSubject] = React.useState('')
   const [name, setName] = React.useState('')
   const [expiresAt, setExpiresAt] = React.useState('')
-
   const subjects = useSubjectsQuery.data
-
   const handleAddStudents = () => {
     const subjectId = subjects.filter(
       (subject) => subject.name === selectedSubject,
@@ -68,7 +65,7 @@ const HandleClasses = () => {
   return (
     <div className={classes.container}>
       <div className={classes.component}>
-        <Typography variant="h3">Add Student to a class</Typography>
+        <Typography variant="h3">Add student to a class</Typography>
         <Typography variant="p">Select Class</Typography>
         <FormControl variant="outlined" className={classes.formControl}>
           <Select
@@ -87,6 +84,7 @@ const HandleClasses = () => {
           </Select>
         </FormControl>
         <Typography variant="p">Add student by ID</Typography>
+        <FormControl />
         <Chip value={chip} setChipValue={setChipValue} />
         <Button
           onClick={handleAddStudents}
@@ -97,8 +95,9 @@ const HandleClasses = () => {
           Submit
         </Button>
       </div>
+
       <div className={classes.component}>
-        <Typography variant="h2">Add classe</Typography>
+        <Typography variant="h2">Create class</Typography>
         <TextField
           className={classes.formControlExtraSpacing}
           value={name}

@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { useSubjects } from 'services/queries'
+import { usePrivateSubjects } from 'services/queries'
 import { generateToken } from 'services/api'
 
 const useStyles = makeStyles((theme) => ({
@@ -28,11 +28,12 @@ const useStyles = makeStyles((theme) => ({
 
 const TeacherView = ({ user }) => {
   const classes = useStyles()
-  const useSubjectsQuery = useSubjects()
+  const useUserPrivateSubjectsQuery = usePrivateSubjects(user.email)
 
   const [selectedSubject, setSelectedSubject] = React.useState('')
   const [code, setCode] = React.useState('')
-  const subjects = useSubjectsQuery.data
+  const subjects = useUserPrivateSubjectsQuery.data
+
   const handleClick = () => {
     generateToken(
       subjects.filter((x) => x.name === selectedSubject)[0].id,

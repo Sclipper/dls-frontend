@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import Options from 'components/Option'
 import { makeStyles } from '@material-ui/core'
-import { useAccessToken } from '../services/queries'
+import { useAccessToken, useUserData } from '../services/queries'
 
 const useStyles = makeStyles((theme) => ({
   optionsContainer: {
@@ -16,16 +16,14 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const history = useHistory()
   const useAccessTokenQuery = useAccessToken()
-
   const classes = useStyles()
   const isLoggedIn = Boolean(useAccessTokenQuery.data)
-
   if (!isLoggedIn) {
     history.push('/login')
   }
   return (
     <div className={classes.optionsContainer}>
-      <Options location="generate" optionText="Generate Code" />
+      <Options location="generate" optionText="Attendance check" />
       <Options location="handle-classes" optionText="Handle Classes" />
       <Options location="info" optionText="Attendance information" />
     </div>

@@ -1,8 +1,9 @@
 import callAPI from '../callAPI'
 
-const getUserData = () => {
-  return callAPI('/user/get-data', {
-    method: 'get',
+const getUserData = ({ email }) => {
+  return callAPI('/users/data', {
+    method: 'post',
+    data: { email },
   }).then(({ data }) => {
     return data
   })
