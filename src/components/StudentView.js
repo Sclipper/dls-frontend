@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { usePrivateSubjects } from 'services/queries'
+import { usePrivateSubjects, useSubjects } from 'services/queries'
 import { registerAttendance } from 'services/api'
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const StudentView = ({ user }) => {
   const classes = useStyles()
-  const useUserPrivateSubjectsQuery = usePrivateSubjects(user.email)
+  const useUserPrivateSubjectsQuery = useSubjects()
   const [selectedSubject, setSelectedSubject] = React.useState('')
   const [code, setCode] = React.useState('')
   const [isRegistered, setIsRegistered] = React.useState(false)
